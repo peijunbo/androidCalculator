@@ -11,6 +11,7 @@
         <TextView
             android:id="@+id/result"
             android:gravity="center_vertical|right"
+            android:textColor="@color/black"
             android:layout_height="match_parent"
             android:textSize="50sp"
             android:layout_width="match_parent"
@@ -30,6 +31,7 @@
             android:textSize="30sp"
             android:layout_weight="1"
             android:text="AC"
+            android:textColor="#FF8C00"
             />
         <Button
             android:id="@+id/button_back"
@@ -39,6 +41,7 @@
             android:layout_width="0dp"
             android:textSize="50sp"
             android:layout_weight="1"
+            android:textColor="#FF8C00"
             android:text="@string/del_icon"
             />
         <Button
@@ -49,6 +52,7 @@
             android:layout_weight="1"
             android:textSize="30sp"
             android:text="("
+            android:textColor="#FF8C00"
             />
         <Button
             android:id="@+id/button_r_bracket"
@@ -58,6 +62,7 @@
             android:layout_weight="1"
             android:textSize="30sp"
             android:text=")"
+            android:textColor="#FF8C00"
             />
     </LinearLayout>
 
@@ -101,6 +106,7 @@
             android:layout_weight="1"
             android:textSize="30sp"
             android:text="/"
+            android:textColor="#FF8C00"
             />
     </LinearLayout>
     <LinearLayout
@@ -143,6 +149,7 @@
             android:layout_weight="1"
             android:textSize="30sp"
             android:text="*"
+            android:textColor="#FF8C00"
             />
     </LinearLayout>
     <LinearLayout
@@ -185,6 +192,7 @@
             android:layout_weight="1"
             android:textSize="30sp"
             android:text="-"
+            android:textColor="#FF8C00"
             />
     </LinearLayout>
     <LinearLayout
@@ -218,6 +226,7 @@
             android:textSize="30sp"
             android:layout_weight="2"
             android:text="+"
+            android:textColor="#FF8C00"
             />
         <Button
             android:id="@+id/button_equal"
@@ -227,6 +236,7 @@
             android:layout_weight="1"
             android:textSize="30sp"
             android:text="="
+            android:textColor="#FF8C00"
             />
     </LinearLayout>
 

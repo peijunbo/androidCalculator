@@ -33,6 +33,8 @@ public class FirstActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.first_layout);
         textView = (TextView) findViewById(R.id.result);
+
+        //数字
         buttons = new Button[10];
         for (i = 0; i < 10; i++) {
             int resID = getResources().getIdentifier("button" + "_" + i, "id", getPackageName());
@@ -52,6 +54,7 @@ public class FirstActivity extends Activity {
                 }
             });
         }
+        //符号
         CalButton = new Button[4];
         CalButton[0] = (Button) findViewById(R.id.button_plus);
         CalButton[1] = (Button) findViewById(R.id.button_sub);
@@ -63,53 +66,41 @@ public class FirstActivity extends Activity {
                 public void onClick(View view) {
                     Button bSelf = (Button) findViewById(view.getId());
                     String showString = String.valueOf(textView.getText());
-                    if (showString.equals("0") || showString.charAt(0) == '=') {
-                        textView.setText(bSelf.getText());
+                    if (showString.charAt(0) == '=' || showString.equals("0")) {
+                        showString = showString.substring(1, showString.length());
                     }
-                    else {
-                        textView.setText(showString + bSelf.getText());
-                    }
+                    textView.setText(showString + bSelf.getText());
+
                 }
             });
         }
-
         EqualButton = (Button) findViewById(R.id.button_equal);
         EqualButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String expression = String.valueOf(textView.getText()) + '=';
+                char head = expression.charAt(0);
+                switch (head) {
+                    case '-':
+                    case '+':
+                    case '*':
+                    case '/':
+                        expression = '0' + expression;
+                        break;
+                    case '=':
+                        char next = expression.charAt(1);
+                        if (next == '+' || next == '-' || next == '/' || next == '*') {
+                            expression = '0' + expression.substring(1, expression.length());
+                        }
+                        else {
+                            expression = expression.substring(1, expression.length());
+                        }
+                        break;
+                    default:
+                }
                 float result;
-                result = Calculator.calculate(String.valueOf(textView.getText()) + '=');
-                String showString = String.valueOf(textView.getText());
+                result = Calculator.calculate(expression);
                 textView.setText("=" + result);
-            }
-        });
-        ClearButton = (Button) findViewById(R.id.button_clear);
-        ClearButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String result = new String("0");
-                textView.setText(result);
-            }
-        });
-        BackButton = (Button) findViewById(R.id.button_back);
-        BackButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String showString = String.valueOf(textView.getText());
-                textView.setText(showString.substring(0, showString.length() - 1));
-            }
-        });
-        DotButton = (Button) findViewById(R.id.button_dot);
-        DotButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String showString = String.valueOf(textView.getText());
-                if (showString.charAt(0) == '=') {
-                    textView.setText("0.");
-                }
-                else {
-                    textView.setText(showString + ".");
-                }
             }
         });
         BracketButton = new Button[2];
@@ -142,6 +133,35 @@ public class FirstActivity extends Activity {
                 }
             }
         });
-
+        //清空、退格
+        ClearButton = (Button) findViewById(R.id.button_clear);
+        ClearButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String result = "0";
+                textView.setText(result);
+            }
+        });
+        BackButton = (Button) findViewById(R.id.button_back);
+        BackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String showString = String.valueOf(textView.getText());
+                textView.setText(showString.substring(0, showString.length() - 1));
+            }
+        });
+        DotButton = (Button) findViewById(R.id.button_dot);
+        DotButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String showString = String.valueOf(textView.getText());
+                if (showString.charAt(0) == '=') {
+                    textView.setText("0.");
+                }
+                else {
+                    textView.setText(showString + ".");
+                }
+            }
+        });
     }
 }
