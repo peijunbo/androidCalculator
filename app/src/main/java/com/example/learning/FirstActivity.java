@@ -43,7 +43,12 @@ public class FirstActivity extends Activity {
                 public void onClick(View view) {
                     Button bSelf = (Button) findViewById(view.getId());
                     String showString = String.valueOf(textView.getText());
-                    textView.setText(showString + bSelf.getText());
+                    if (showString.equals("0") || showString.charAt(0) == '=') {
+                        textView.setText(bSelf.getText());
+                    }
+                    else {
+                        textView.setText(showString + bSelf.getText());
+                    }
                 }
             });
         }
@@ -58,7 +63,12 @@ public class FirstActivity extends Activity {
                 public void onClick(View view) {
                     Button bSelf = (Button) findViewById(view.getId());
                     String showString = String.valueOf(textView.getText());
-                    textView.setText(showString + bSelf.getText());
+                    if (showString.equals("0") || showString.charAt(0) == '=') {
+                        textView.setText(bSelf.getText());
+                    }
+                    else {
+                        textView.setText(showString + bSelf.getText());
+                    }
                 }
             });
         }
@@ -94,7 +104,12 @@ public class FirstActivity extends Activity {
             @Override
             public void onClick(View view) {
                 String showString = String.valueOf(textView.getText());
-                textView.setText(showString + ".");
+                if (showString.charAt(0) == '=') {
+                    textView.setText("0.");
+                }
+                else {
+                    textView.setText(showString + ".");
+                }
             }
         });
         BracketButton = new Button[2];
@@ -106,7 +121,12 @@ public class FirstActivity extends Activity {
             public void onClick(View view) {
                 Button bSelf = (Button) findViewById(view.getId());
                 String showString = String.valueOf(textView.getText());
-                textView.setText(showString + bSelf.getText());
+                if (showString.equals("0") || showString.charAt(0) == '=') {
+                    textView.setText(bSelf.getText());
+                }
+                else {
+                    textView.setText(showString + bSelf.getText());
+                }
             }
         });
         BracketButton[1].setOnClickListener(new View.OnClickListener() {
@@ -114,7 +134,12 @@ public class FirstActivity extends Activity {
             public void onClick(View view) {
                 Button bSelf = (Button) findViewById(view.getId());
                 String showString = String.valueOf(textView.getText());
-                textView.setText(showString + bSelf.getText());
+                if (showString.equals("0") || showString.charAt(0) == '=') {
+                    textView.setText(bSelf.getText());
+                }
+                else {
+                    textView.setText(showString + bSelf.getText());
+                }
             }
         });
 
