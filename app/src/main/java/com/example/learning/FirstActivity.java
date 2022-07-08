@@ -16,12 +16,16 @@ import android.view.WindowInsetsAnimationController;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.example.learning.Calculator;
 
 public class FirstActivity extends Activity {
     private TextView textView;
     private Button[] buttons;
     private Button EqualButton;
     private Button ClearButton;
+    private Button BackButton;
+    private Button DotButton;
+    private Button[] BracketButton;
     private Button[] CalButton;
     private int i;
     @Override
@@ -63,9 +67,10 @@ public class FirstActivity extends Activity {
         EqualButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String result = new String("这是结果");
+                float result;
+                result = Calculator.calculate(String.valueOf(textView.getText()) + '=');
                 String showString = String.valueOf(textView.getText());
-                textView.setText(result);
+                textView.setText("=" + result);
             }
         });
         ClearButton = (Button) findViewById(R.id.button_clear);
@@ -76,5 +81,42 @@ public class FirstActivity extends Activity {
                 textView.setText(result);
             }
         });
+        BackButton = (Button) findViewById(R.id.button_back);
+        BackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String showString = String.valueOf(textView.getText());
+                textView.setText(showString.substring(0, showString.length() - 1));
+            }
+        });
+        DotButton = (Button) findViewById(R.id.button_dot);
+        DotButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String showString = String.valueOf(textView.getText());
+                textView.setText(showString + ".");
+            }
+        });
+        BracketButton = new Button[2];
+        BracketButton[0] = (Button) findViewById(R.id.button_l_bracket);
+        BracketButton[1] = (Button) findViewById(R.id.button_r_bracket);
+
+        BracketButton[0].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Button bSelf = (Button) findViewById(view.getId());
+                String showString = String.valueOf(textView.getText());
+                textView.setText(showString + bSelf.getText());
+            }
+        });
+        BracketButton[1].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Button bSelf = (Button) findViewById(view.getId());
+                String showString = String.valueOf(textView.getText());
+                textView.setText(showString + bSelf.getText());
+            }
+        });
+
     }
 }
